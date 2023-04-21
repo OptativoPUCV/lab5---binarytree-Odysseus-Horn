@@ -95,7 +95,7 @@ void insertTreeMap(TreeMap *tree, void *key, void *value) {
 
     if (x->left == NULL)
       return x;
-
+    else
       return minimum(x->left);
   }
 
