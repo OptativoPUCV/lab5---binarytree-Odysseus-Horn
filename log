@@ -28,3 +28,9 @@ treemap.c:41:34: note: referencing an object of size 8 allocated by ‘malloc’
 cc1: all warnings being treated as errors
 Compilation failed
 3773f0d
+Fri 21 Apr 2023 12:32:45 AM UTC: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  4|7
+total_score: 5/70
+70296a8
