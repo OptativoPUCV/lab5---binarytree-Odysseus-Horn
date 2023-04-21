@@ -98,9 +98,76 @@ TreeNode *minimum(TreeNode * x) {
 }
 
 void removeNode(TreeMap * tree, TreeNode * node) {
-
-
+  if(tree == NULL) return;
   
+
+  tree->current = tree->root;
+
+  while(tree->current != NULL)
+  {  
+
+    
+    if(is_equal(tree, tree->current->pair->key, node->pair->key))
+    {
+
+      
+      //ambos hijos del nodo son NULL
+      if(tree->current->left == NULL && tree->current->right == NULL)
+      {
+        if(tree->lower_than(tree->current->pair->key,tree->current->parent->pair->key))
+          tree->current->parent->left = NULL;
+        else
+          tree->current->parent->right = NULL;
+
+        return;
+      }
+
+      //caso de que hayan dos hijos 
+      if(tree->current->left != NULL && tree->current->right != NULL){
+        
+        TreeNode *indexNode = tree->current->right;
+        TreeNode *minNode = minimum(indexNode);
+
+        tree->current->pair = minNode->pair;
+
+        removeNode(tree, minNode);
+
+        return;
+      }
+      else if(tree->current->left != NULL) // en caso de que solo tenga un hijo izquierdo
+      {
+        tree->current->left->parent = tree->current->parent;
+
+        if(tree->lower_than(tree->current->pair->key,tree->current->parent->pair->key))
+          tree->current->parent->left = tree->current->left;
+        else
+          tree->current->parent->right = tree->current->left;
+
+        return;
+      }
+      else
+      {
+        tree->current->right->parent = tree->current->parent;
+
+        if(tree->lower_than(tree->current->pair->key,tree->current->parent->pair->key))
+          tree->current->parent->right = tree->current->right;
+        else
+          tree->current->parent->left = tree->current->right;
+
+        return;
+      } 
+    } 
+    
+    if(tree->lower_than(tree->current->left->pair->key, tree->current->pair->key))
+    {
+      tree->current = tree->current->left;
+    }
+    else
+    {
+      tree->current = tree->current->right;
+    }
+    
+  }  
 }
 
 void eraseTreeMap(TreeMap * tree, void *key) {
