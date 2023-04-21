@@ -55,13 +55,13 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
 
   if(tree == NULL) return; //si el arbol no tiene nada retornamos
 
-  tree->current = tree->root;
-
   if(tree->root == NULL) //si el arbol no tiene raiz, le asignamos el nuevo nodo como raiz.
   {
     tree->root = new_node;
     return;
   }
+
+  tree->current = tree->root;
   
   while(1) 
   {
@@ -72,23 +72,24 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
 
     if(tree->lower_than(key, tree->current->pair->key)) //si la clave es menor al current, lo llevamos al hijo izquierdo
     {
-      tree->current = tree->current->left;
-      if(tree->current == NULL) //si el nodo actual esta vacio, lo asignamos inmediatamente
+      if(tree->current->left == NULL)
       {
-        tree->current = new_node;
+        tree->current->left = new_node;
+        tree->current->left->parent = tree->current;
         return;
       }
+      tree->current = tree->current->left;
     }
     else
     {
-      tree->current = tree->current->right;
-      if(tree->current == NULL) //si el nodo actual esta vacio, lo asignamos inmediatamente
+      if(tree->current->right == NULL)
       {
-        tree->current = new_node;
+        tree->current->right = new_node;
+        tree->current->right->parent = tree->current;
         return;
       }
+      tree->current = tree->current->right;
     }
-  }  
 }
 
 TreeNode * minimum(TreeNode * x){
