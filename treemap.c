@@ -49,52 +49,49 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
 
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
-    if(tree == NULL) return;
 
-    TreeNode* nodoActual = tree->root;
+  if(tree == NULL) return; //si el arbol no tiene nada retornamos
 
-    TreeNode* nuevoNodo = createTreeNode(key, value);
-
-    if(nodoActual != NULL)
+  if(searchTreeMap(tree, key) != NULL) // si las claves son iguales no hacemos nada.
     {
-        TreeNode* nodoPadre = NULL;
+      return;
+    }
 
-        while(nodoActual != NULL)
-        {
-            nodoPadre = nodoActual;
+  if(tree->root == NULL) //si el arbol no tiene raiz, le asignamos el nuevo nodo como raiz.
+  {
+    tree->root = createTreeNode(key, value); //nuevo nodo creado;
+    tree->current = tree->root;
+    return;
+  }
 
-            if(is_equal(tree, nodoActual->pair->key, key))
-            {
-                return;
-            }
-            else if(tree->lower_than(key, nodoActual->pair->key))
-            {
-                nodoActual = nodoActual->left;
-            }
-            else
-            {
-                nodoActual = nodoActual->right;
-            }
-        }
-
-        if(tree->lower_than(key, nodoPadre->pair->key))
-        {
-            nodoPadre->left = nuevoNodo;
-        }
-        else
-        {
-            nodoPadre->right = nuevoNodo;
-        }
-
-        nuevoNodo->parent = nodoPadre;
-        tree->current = nuevoNodo;
+  tree->current = tree->root;
+  
+  while(1) 
+  {
+    if(tree->lower_than(key, tree->current->pair->key)) //si la clave es menor al current, lo llevamos al hijo izquierdo
+    {
+      if(tree->current->left == NULL)
+      {
+        tree->current->left = createTreeNode(key, value); //nuevo nodo creado;
+        tree->current->left->parent = tree->current;
+        tree->current = tree->current->left;
+        return;
+      }
+      tree->current = tree->current->left;
     }
     else
     {
-        tree->root = nuevoNodo;
-        tree->current = nuevoNodo;
+      if(tree->current->right == NULL)
+      {
+        tree->current->right = createTreeNode(key, value);
+        tree->current->right->parent = tree->current;
+        tree->current = tree->current->right;
+        return;
+      }
+      tree->current = tree->current->right;
     }
-
+  
+  
 }
 
 TreeNode * minimum(TreeNode * x){
