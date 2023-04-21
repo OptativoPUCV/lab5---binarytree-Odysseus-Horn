@@ -314,3 +314,28 @@ test.c:503:5: error: ‘main’ defined but not used [-Werror=unused-function]
 cc1: all warnings being treated as errors
 Compilation failed
 26b2ccd
+Fri 21 Apr 2023 03:21:44 AM UTC: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+treemap.c: In function ‘minimum’:
+treemap.c:96:5: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
+   96 |     if (x->left == NULL)
+      |     ^~
+treemap.c:99:7: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   99 |       return minimum(x->left);
+      |       ^~~~~~
+test.c: In function ‘insertTreeMap’:
+test.c:503:5: error: ‘main’ is normally a non-static function [-Werror=main]
+  503 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+test.c:606:1: error: expected declaration or statement at end of input
+  606 | }
+      | ^
+At top level:
+test.c:503:5: error: ‘main’ defined but not used [-Werror=unused-function]
+  503 | int main( int argc, char *argv[] ) {
+      |     ^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+c1bea24
