@@ -49,42 +49,43 @@ TreeMap *createTreeMap(int (*lower_than)(void *key1, void *key2)) {
 
 void insertTreeMap(TreeMap *tree, void *key, void *value) {
 
-if (tree == NULL)
-  return; // si el arbol no tiene nada retornamos
-
-if (searchTreeMap(tree, key) !=
-    NULL) // si las claves son iguales no hacemos nada.
-{
-  return;
-}
-
-if (tree->root == NULL) // si el arbol no tiene raiz, le asignamos el nuevo nodo como raiz.
-{
-  tree->root = createTreeNode(key, value); // nuevo nodo creado;
-  tree->current = tree->root;
-  return;
-}
-
-tree->current = tree->root;
-
-while (1) {
-  if (tree->lower_than(key, tree->current->pair->key))
+  if (tree == NULL)
+    return; // si el arbol no tiene nada retornamos
+  
+  if (searchTreeMap(tree, key) !=
+      NULL) // si las claves son iguales no hacemos nada.
   {
-    if (tree->current->left == NULL) {
-      tree->current->left = createTreeNode(key, value); // nuevo nodo creado;
-      tree->current->left->parent = tree->current;
+    return;
+  }
+  
+  if (tree->root == NULL) // si el arbol no tiene raiz, le asignamos el nuevo nodo como raiz.
+  {
+    tree->root = createTreeNode(key, value); // nuevo nodo creado;
+    tree->current = tree->root;
+    return;
+  }
+  
+  tree->current = tree->root;
+  
+  while (1) {
+    if (tree->lower_than(key, tree->current->pair->key))
+    {
+      if (tree->current->left == NULL) {
+        tree->current->left = createTreeNode(key, value); // nuevo nodo creado;
+        tree->current->left->parent = tree->current;
+        tree->current = tree->current->left;
+        return;
+      }
       tree->current = tree->current->left;
-      return;
-    }
-    tree->current = tree->current->left;
-  } else {
-    if (tree->current->right == NULL) {
-      tree->current->right = createTreeNode(key, value);
-      tree->current->right->parent = tree->current;
+    } else {
+      if (tree->current->right == NULL) {
+        tree->current->right = createTreeNode(key, value);
+        tree->current->right->parent = tree->current;
+        tree->current = tree->current->right;
+        return;
+      }
       tree->current = tree->current->right;
-      return;
     }
-    tree->current = tree->current->right;
   }
 }
 
