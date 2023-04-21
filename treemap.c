@@ -61,7 +61,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
 
   tree->current = tree->root;
   
-  while(1) 
+  while(tree->current != NULL) 
   {
     if(is_equal(tree, key, tree->current->pair->key)) // si las claves son iguales no hacemos nada.
     {
