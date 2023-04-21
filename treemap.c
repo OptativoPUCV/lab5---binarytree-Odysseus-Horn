@@ -100,11 +100,7 @@ TreeNode *minimum(TreeNode * x) {
 void removeNode(TreeMap * tree, TreeNode * node) {
   if(tree == NULL) return;
   
-  if (searchTreeMap(tree, node->pair->key) !=
-      NULL) // si las claves son iguales no hacemos nada.
-  {
-    return;
-  }
+  
   
   tree->current = tree->root;
 
