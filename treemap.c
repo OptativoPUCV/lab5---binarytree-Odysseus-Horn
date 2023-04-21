@@ -60,6 +60,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
   if(tree->root == NULL) //si el arbol no tiene raiz, le asignamos el nuevo nodo como raiz.
   {
     tree->root = createTreeNode(key, value); //nuevo nodo creado;
+    tree->current = tree->root;
     return;
   }
 
@@ -67,7 +68,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
   
   while(1) 
   {
-    if(tree->lower_than(tree->current->pair->key, key)) //si la clave es menor al current, lo llevamos al hijo izquierdo
+    if(tree->lower_than(key, tree->current->pair->key)) //si la clave es menor al current, lo llevamos al hijo izquierdo
     {
       if(tree->current->left == NULL)
       {
@@ -81,7 +82,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     {
       if(tree->current->right == NULL)
       {
-        tree->current->right = createTreeNode(key, value); //nuevo nodo creado;
+        tree->current->right = createTreeNode(key, value);
         tree->current->right->parent = tree->current;
         return;
       }
