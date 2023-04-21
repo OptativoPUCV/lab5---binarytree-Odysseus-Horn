@@ -390,3 +390,15 @@ Fri 21 Apr 2023 07:20:26 PM UTC:
  1 file changed, 67 insertions(+)
  tests:  0|0
 4e428ff
+Fri 21 Apr 2023 07:22:39 PM UTC: 
+ treemap.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+In file included from test.c:4:
+treemap.c: In function ‘removeNode’:
+treemap.c:103:27: error: ‘key’ undeclared (first use in this function); did you mean ‘key_t’?
+  103 |   if (searchTreeMap(tree, key) !=
+      |                           ^~~
+      |                           key_t
+treemap.c:103:27: note: each undeclared identifier is reported only once for each function it appears in
+Compilation failed
+986c26c
