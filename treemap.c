@@ -206,6 +206,12 @@ Pair *searchTreeMap(TreeMap * tree, void *key) {
 
 Pair *upperBound(TreeMap * tree, void *key) { return NULL; }
 
-Pair *firstTreeMap(TreeMap * tree) { return NULL; }
+Pair *firstTreeMap(TreeMap * tree) { 
+  if(tree == NULL) return NULL;
+  
+  if(tree->root->pair == NULL) return NULL;
+  
+  return tree->root->pair; 
+}
 
 Pair *nextTreeMap(TreeMap * tree) { return NULL; }
