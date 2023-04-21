@@ -67,7 +67,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
   
   while(1) 
   {
-    if(tree->lower_than(key, tree->current->pair->key)) //si la clave es menor al current, lo llevamos al hijo izquierdo
+    if(tree->lower_than(tree->current->pair->key, key)) //si la clave es menor al current, lo llevamos al hijo izquierdo
     {
       if(tree->current->left == NULL)
       {
