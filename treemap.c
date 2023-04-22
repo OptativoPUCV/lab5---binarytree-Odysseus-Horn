@@ -125,7 +125,7 @@ void removeNode(TreeMap *tree, TreeNode *node) {
 
     removeNode(tree, minNode);
 
-    return;
+    
   } else if (node->left != NULL) // en caso de que solo tenga un hijo izquierdo
   {
     if (node->parent == NULL) {
