@@ -197,10 +197,8 @@ Pair *upperBound(TreeMap *tree, void *key)
     {
       par_actual = nextTreeMap(tree);
     }
-
-    
   }
-
+  return NULL;
 }
 
 Pair *firstTreeMap(TreeMap *tree) {

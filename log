@@ -535,3 +535,14 @@ treemap.c:204:1: error: control reaches end of non-void function [-Werror=return
 cc1: all warnings being treated as errors
 Compilation failed
 960928b
+Sat 22 Apr 2023 01:48:04 AM UTC: 
+ treemap.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘upperBound’:
+treemap.c:188:9: error: variable ‘par_actual’ set but not used [-Werror=unused-but-set-variable]
+  188 |   Pair *par_actual = firstTreeMap(tree);
+      |         ^~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+1d49c2d
