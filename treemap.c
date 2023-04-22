@@ -210,11 +210,7 @@ Pair *nextTreeMap(TreeMap *tree) { // 8123
         tree->current = index_node;
         return index_node->pair;
       }
-      else
-      {
         index_node = index_node->parent;
-        if(index_node == NULL) return NULL;
-      }
     }
     return NULL;
   } 
