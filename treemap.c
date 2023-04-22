@@ -183,7 +183,20 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
   return NULL;
 }
 
-Pair *upperBound(TreeMap *tree, void *key) { return NULL; }
+Pair *upperBound(TreeMap *tree, void *key) 
+{ 
+  
+  if(searchTreeMap(tree, key) != NULL)\
+  {
+    return tree->current->pair;
+  }
+  else
+  {
+    nextTreeMap(tree);
+  }
+  
+
+}
 
 Pair *firstTreeMap(TreeMap *tree) {
   if (tree == NULL)
