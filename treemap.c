@@ -102,8 +102,7 @@ void removeNode(TreeMap *tree, TreeNode *node) {
     return;
 
   // ambos hijos del nodo son NULL
-  if (node->left == NULL && node->right == NULL) 
-  {
+  if (node->left == NULL && node->right == NULL) {
     if (node->parent == NULL) {
       tree->root = NULL;
       return;
@@ -114,9 +113,8 @@ void removeNode(TreeMap *tree, TreeNode *node) {
     } else {
       node->parent->right = NULL;
     }
-  }// caso de que hayan dos hijos
+  } // caso de que hayan dos hijos
   else if (node->left != NULL && node->right != NULL) {
-
 
     TreeNode *minNode = minimum(node->right);
 
@@ -124,11 +122,9 @@ void removeNode(TreeMap *tree, TreeNode *node) {
 
     removeNode(tree, minNode);
 
-    
   } else if (node->left != NULL) // en caso de que solo tenga un hijo izquierdo
   {
-    if (node->parent == NULL) 
-    {
+    if (node->parent == NULL) {
       tree->root = node->left;
       return;
     }
@@ -140,16 +136,11 @@ void removeNode(TreeMap *tree, TreeNode *node) {
     else
       node->parent->right = node->left;
 
-  } 
-  else 
-  {
-    if (node->parent == NULL) 
-    {
+  } else {
+    if (node->parent == NULL) {
       tree->root = node->right;
       return;
     }
-
-   
 
     if (node == node->parent->right)
       node->parent->right = node->right;
@@ -203,30 +194,20 @@ Pair *firstTreeMap(TreeMap *tree) {
   return tree->current->pair;
 }
 
-Pair *nextTreeMap(TreeMap *tree) 
-{ 
-  
-  if(tree->current->right != NULL)
-  {
+Pair *nextTreeMap(TreeMap *tree) {
+
+  if (tree->current->right != NULL) {
     tree->current = minimum(tree->current->right);
     return tree->current->pair;
-  }
-  else
-  { 
-    TreeNode *index_node = tree->current;
-    while(index_node != NULL)
-    {
-      if(tree->lower_than(index_node->pair->key,tree->current->pair->key))
-      {
+  } else {
+    TreeNode *index_node = tree->current->parent;
+    while (index_node != NULL) {
+      if (tree->lower_than(index_node->pair->key, tree->current->pair->key)) {
         return tree->current->pair;
       }
       index_node = index_node->parent;
     }
   }
-  
-  
-  
-  
-  
-  return NULL; 
+
+  return NULL;
 }
