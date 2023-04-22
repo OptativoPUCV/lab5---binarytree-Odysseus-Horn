@@ -209,9 +209,11 @@ Pair *nextTreeMap(TreeMap *tree) { // 8123
       {
         return index_node->pair;
       }
-      index_node = index_node->parent;
-      if(index_node == NULL) return NULL;
-      
+      else
+      {
+        index_node = index_node->parent;
+        if(index_node == NULL) return NULL;
+      }
     }
     return NULL;
   } 
