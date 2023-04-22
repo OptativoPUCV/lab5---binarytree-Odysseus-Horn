@@ -189,7 +189,7 @@ Pair *upperBound(TreeMap *tree, void *key)
 
   while(tree->current != NULL)
   {
-    if(tree->lower_than(key, par_actual->key))
+    if(tree->lower_than(par_actual->key, key))
     {
       return tree->current->pair;
     }
