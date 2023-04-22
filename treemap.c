@@ -185,19 +185,24 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 
 Pair *upperBound(TreeMap *tree, void *key) 
 {  
-  Pair *par_actual = firstTreeMap(tree);
-
+  if(searchTreeMap(tree, key) != NULL)
+  {
+    return tree->current->pair;
+  }
+  
+  tree->current = tree->root;
+  TreeNode *aux_node = tree->current;
   while(tree->current != NULL)
   {
-    if(tree->lower_than(par_actual->key, key) == 0)
+    if(tree->lower_than(key, tree->current->pair->key))
     {
-      return tree->current->pair;
+      tree->current = tree->current->left;
     }
-    else
-    {
-      par_actual = nextTreeMap(tree);
-    }
+
+
+    
   }
+
   return NULL;
 }
 
