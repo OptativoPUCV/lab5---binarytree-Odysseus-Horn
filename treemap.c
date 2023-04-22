@@ -210,7 +210,6 @@ Pair *nextTreeMap(TreeMap *tree) {
       }
       index_node = index_node->parent;
     }
-  }
-
-  return NULL;
+    return NULL;
+  } 
 }
