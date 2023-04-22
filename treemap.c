@@ -184,17 +184,22 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
 }
 
 Pair *upperBound(TreeMap *tree, void *key) 
-{ 
-  
-  if(searchTreeMap(tree, key) != NULL)\
+{  
+  Pair *par_actual = firstTreeMap(tree);
+
+  while(tree->current != NULL)
   {
-    return tree->current->pair;
+    if(tree->current->pair->key >= key)
+    {
+      return tree->current->pair;
+    }
+    else
+    {
+      par_actual = nextTreeMap(tree);
+    }
+
+    
   }
-  else
-  {
-    nextTreeMap(tree);
-  }
-  
 
 }
 
