@@ -206,7 +206,8 @@ Pair *nextTreeMap(TreeMap *tree) { // 8123
     TreeNode *index_node = tree->current->parent;
     while (index_node != NULL) {
       if (tree->lower_than(tree->current->pair->key, index_node->pair->key)) 
-      {
+      {  
+        tree->current = index_node;
         return index_node->pair;
       }
       else
