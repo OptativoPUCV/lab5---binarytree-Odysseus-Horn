@@ -118,10 +118,6 @@ void removeNode(TreeMap *tree, TreeNode *node) {
   // caso de que hayan dos hijos
   if (node->left != NULL && node->right != NULL) {
 
-    if (node->parent == NULL) {
-      tree->root = NULL;
-      return;
-    }
 
     TreeNode *minNode = minimum(node->right);
 
@@ -150,12 +146,14 @@ void removeNode(TreeMap *tree, TreeNode *node) {
       return;
     }
 
-    node->right->parent = node->parent;
+   
 
     if (node == node->parent->right)
       node->parent->right = node->right;
     else
       node->parent->left = node->right;
+
+   node->right->parent = node->parent;
   }
 }
 
