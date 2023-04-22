@@ -206,6 +206,10 @@ Pair *upperBound(TreeMap *tree, void *key)
       tree->current = tree->current->right;
     }
   }  
+
+  if(tree->lower_than(aux_node->pair->key, key))
+    return NULL;
+  
   return aux_node->pair;
 }
 
