@@ -193,17 +193,20 @@ Pair *upperBound(TreeMap *tree, void *key)
   tree->current = tree->root;
   TreeNode *aux_node = tree->current;
   while(tree->current != NULL)
-  {
+  {  
+    if(tree->lower_than(key, tree->current->pair->key))
+      aux_node = tree->current;
+    
     if(tree->lower_than(key, tree->current->pair->key))
     {
       tree->current = tree->current->left;
     }
-
-
-    
-  }
-
-  return NULL;
+    else
+    {
+      tree->current = tree->current->right;
+    }
+  }  
+  return aux_node->pair;
 }
 
 Pair *firstTreeMap(TreeMap *tree) {

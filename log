@@ -595,3 +595,9 @@ treemap.c:194:13: error: unused variable ‘aux_node’ [-Werror=unused-variable
 cc1: all warnings being treated as errors
 Compilation failed
 cb22ee0
+Sat 22 Apr 2023 02:17:41 AM UTC: 
+ treemap.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+ tests:  28|1
+total_score: 65/70
+5f97788
