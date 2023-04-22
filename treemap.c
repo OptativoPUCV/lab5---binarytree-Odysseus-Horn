@@ -194,13 +194,14 @@ Pair *firstTreeMap(TreeMap *tree) {
   return tree->current->pair;
 }
 
-Pair *nextTreeMap(TreeMap *tree) {
+Pair *nextTreeMap(TreeMap *tree) { // 8123
 
   if (tree->current->right != NULL) 
   {
     tree->current = minimum(tree->current->right);
     return tree->current->pair;
-  } else 
+  } 
+  else 
   {
     TreeNode *index_node = tree->current->parent;
     while (index_node != NULL) {
@@ -209,6 +210,8 @@ Pair *nextTreeMap(TreeMap *tree) {
         return index_node->pair;
       }
       index_node = index_node->parent;
+      if(index_node == NULL) return NULL;
+      
     }
     return NULL;
   } 
