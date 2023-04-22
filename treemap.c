@@ -203,4 +203,30 @@ Pair *firstTreeMap(TreeMap *tree) {
   return tree->current->pair;
 }
 
-Pair *nextTreeMap(TreeMap *tree) { return NULL; }
+Pair *nextTreeMap(TreeMap *tree) 
+{ 
+  
+  if(tree->current->right != NULL)
+  {
+    tree->current = minimum(tree->current->right);
+    return tree->current->pair;
+  }
+  else
+  { 
+    TreeNode *index_node = tree->current;
+    while(index_node != NULL)
+    {
+      if(tree->lower_than(index_node->pair->key,tree->current->pair->key))
+      {
+        return tree->current->pair;
+      }
+      index_node = index_node->parent;
+    }
+  }
+  
+  
+  
+  
+  
+  return NULL; 
+}
